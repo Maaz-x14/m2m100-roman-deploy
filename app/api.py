@@ -6,6 +6,11 @@ FastAPI router with two endpoints:
   POST /romanize  — Urdu script → Roman Urdu transliteration
   GET  /health    — lightweight liveness + readiness probe
 
+text field accepts either a single string or a list of strings.
+Response mirrors the input shape:
+  - string in  → { "romanized_text": "..." }
+  - list in    → { "romanized_text": ["...", "...", ...] }
+
 The root path (/) is intentionally left unmounted.
 All model interaction goes through app.model; this file only handles
 HTTP concerns (validation, error translation, response shaping).
@@ -13,6 +18,7 @@ HTTP concerns (validation, error translation, response shaping).
 
 import logging
 import time
+from typing import Union
 
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
@@ -27,22 +33,31 @@ router = APIRouter()
 # ── Request / Response schemas ────────────────────────────────────────────────
 
 class RomanizeRequest(BaseModel):
-    text: str
+    text: Union[str, list[str]]
 
     @field_validator("text")
     @classmethod
-    def text_must_not_be_blank(cls, v: str) -> str:
-        if not v or not v.strip():
-            raise ValueError("text must not be empty or whitespace-only.")
-        return v.strip()
+    def text_must_not_be_blank(cls, v: Union[str, list[str]]) -> Union[str, list[str]]:
+        if isinstance(v, str):
+            if not v.strip():
+                raise ValueError("text must not be empty or whitespace-only.")
+            return v.strip()
+        # list path
+        if not v:
+            raise ValueError("text list must not be empty.")
+        cleaned = [s.strip() for s in v]
+        blanks  = [i for i, s in enumerate(cleaned) if not s]
+        if blanks:
+            raise ValueError(f"text list has blank entries at index: {blanks}.")
+        return cleaned
 
 
 class RomanizeResponse(BaseModel):
-    romanized_text: str
+    romanized_text: Union[str, list[str]]
 
 
 class HealthResponse(BaseModel):
-    status: str          # "ok" | "unavailable"
+    status: str       # "ok" | "unavailable"
     model_ready: bool
     device: str
 
@@ -53,24 +68,26 @@ class HealthResponse(BaseModel):
     response_model=RomanizeResponse,
     summary="Transliterate Urdu script to Roman Urdu",
     description=(
-        "Accepts a single Urdu string in Arabic script and returns its "
-        "phonetic Roman Urdu representation produced by the fine-tuned "
-        "M2M100 LoRA model."
+        "Accepts a single Urdu string or a list of strings in Arabic script "
+        "and returns Roman Urdu. Response shape mirrors the input: "
+        "string → string, list → list."
     ),
 )
 async def romanize(request: RomanizeRequest) -> RomanizeResponse:
     """
     POST /romanize
 
-    Request body:
+    Single string:
         { "text": "آپ کیسے ہیں؟" }
+        → { "romanized_text": "Aap kaise hain?" }
 
-    Response:
-        { "romanized_text": "Aap kaise hain?" }
+    List of strings:
+        { "text": ["آپ کیسے ہیں؟", "وہ گھر پر نہیں ہے"] }
+        → { "romanized_text": ["Aap kaise hain?", "woh ghar par nahi hai"] }
 
     HTTP status codes:
         200 — success
-        400 — blank / invalid input (caught by Pydantic validator)
+        400 — blank / invalid input
         503 — model not ready
         500 — unexpected inference failure
     """
@@ -81,11 +98,19 @@ async def romanize(request: RomanizeRequest) -> RomanizeResponse:
             content={"detail": "Model is not ready yet. Retry in a moment."},
         )
 
-    logger.info("/romanize  input='%s'", request.text[:80])
+    is_batch = isinstance(request.text, list)
+    sentences = request.text if is_batch else [request.text]
+
+    logger.info(
+        "/romanize  %s  n=%d  preview='%s'",
+        "batch" if is_batch else "single",
+        len(sentences),
+        sentences[0][:60],
+    )
     t0 = time.perf_counter()
 
     try:
-        results = model_module.transliterate([request.text])
+        results = model_module.transliterate(sentences)
     except ValueError as exc:
         logger.warning("/romanize bad input: %s", exc)
         return JSONResponse(status_code=400, content={"detail": str(exc)})
@@ -97,10 +122,9 @@ async def romanize(request: RomanizeRequest) -> RomanizeResponse:
         )
 
     elapsed = (time.perf_counter() - t0) * 1000
-    romanized = results[0]
-    logger.info("/romanize  output='%s'  (%.0f ms)", romanized[:80], elapsed)
+    logger.info("/romanize  done  n=%d  (%.0f ms)", len(results), elapsed)
 
-    return RomanizeResponse(romanized_text=romanized)
+    return RomanizeResponse(romanized_text=results if is_batch else results[0])
 
 
 @router.get(
@@ -113,16 +137,6 @@ async def romanize(request: RomanizeRequest) -> RomanizeResponse:
     ),
 )
 async def health() -> HealthResponse:
-    """
-    GET /health
-
-    Response (ready):
-        { "status": "ok", "model_ready": true, "device": "cuda" }
-
-    Response (not ready):
-        HTTP 503
-        { "status": "unavailable", "model_ready": false, "device": "unknown" }
-    """
     ready  = model_module.is_ready()
     device = str(model_module._device) if model_module._device else "unknown"
 
