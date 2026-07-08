@@ -1,0 +1,19 @@
+# ── Model / training stack ────────────────────────────────────────────────────
+# Pinned to the same minimums as the training requirements.txt
+torch>=2.1.0
+transformers>=5.0.0
+datasets>=2.18.0
+peft>=0.10.0
+sacrebleu>=2.3.1
+sentencepiece>=0.1.99
+accelerate>=0.27.0
+torchao>=0.17.0
+
+# ── API server ────────────────────────────────────────────────────────────────
+fastapi>=0.111.0
+uvicorn[standard]>=0.29.0   # [standard] pulls in httptools + uvloop for performance
+pydantic>=2.0.0              # FastAPI 0.111+ requires Pydantic v2
+
+# ── Optional but recommended ─────────────────────────────────────────────────
+scipy>=1.11.0
+numpy>=1.24.0
