@@ -204,8 +204,19 @@ def transliterate(sentences: list[str]) -> list[str]:
         return_tensors="pt",
         padding=True,
         truncation=True,
-        max_length=128,
+        max_length=config.MAX_SRC_LEN,
     ).to(_device)
+
+    # Detect silent truncation — warn per sentence so it's visible in logs
+    # rather than silently dropping the tail of long inputs.
+    for i, sent in enumerate(sentences):
+        full_len = len(_tokenizer(sent, truncation=False)["input_ids"])
+        if full_len > config.MAX_SRC_LEN:
+            logger.warning(
+                "Input truncated: %d tokens > MAX_SRC_LEN=%d. "
+                "Sentence (first 60 chars): '%s'",
+                full_len, config.MAX_SRC_LEN, sent[:60],
+            )
 
     with torch.no_grad():
         output_ids = _model.generate(
