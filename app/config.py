@@ -31,7 +31,8 @@ SRC_LANG: str          = "ur"
 
 # ── Inference ─────────────────────────────────────────────────────────────────
 NUM_BEAMS: int            = int(os.environ.get("NUM_BEAMS", "4"))
-MAX_NEW_TOKENS: int       = int(os.environ.get("MAX_NEW_TOKENS", "128"))
+MAX_SRC_LEN: int          = int(os.environ.get("MAX_SRC_LEN", "256"))
+MAX_NEW_TOKENS: int       = int(os.environ.get("MAX_NEW_TOKENS", "256"))
 INFERENCE_BATCH_SIZE: int = int(os.environ.get("INFERENCE_BATCH_SIZE", "8"))
 
 # ── Startup warm-up ───────────────────────────────────────────────────────────
