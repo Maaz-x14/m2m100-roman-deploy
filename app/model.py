@@ -228,4 +228,4 @@ def transliterate(sentences: list[str]) -> list[str]:
         )
 
     decoded = _tokenizer.batch_decode(output_ids, skip_special_tokens=True)
-    return [s.strip() for s in decoded]
+    return [s.strip() for s in decoded] 
