@@ -1,0 +1,528 @@
+urdu_word,roman_urdu,notes
+کہہ,keh,imperative 'say'
+بہت,bohat,'very/much'
+کپاس,kapaas,cotton (crop)
+اچھا,acha,'good/okay'
+کرا,kara,'did' (dialectal) or root of 'karaya' (rent)
+اے,aey,vocative 'oh' / interjection
+ڈیسرٹ,dessert,loanword 'dessert'
+پیلو,peelu,could be plant name 'peelu' (Salvadora) or partial word
+مجھے,mujhe,'to me'
+بتاؤ,batao,imperative 'tell'
+فروٹوں,phalon,"'fruits' - phonetic misread; correct is پھلوں (phalon), not فروٹوں literally; if taken as written: fruiton"
+سیالکنڈ,Sialkot,"place name, correct spelling سیالکوٹ; garbled here"
+السلام,Assalam,part of greeting 'Assalam-o-Alaikum'
+معالمہ,mamla,'matter/issue'
+سب ڈویژن,sub division,administrative term 'sub-division'
+گندم,gandum,wheat
+موسمیاتی,mausamiyati,'climatic'
+پشاور,Peshawar,city name
+شیٹ,sheet,loanword 'sheet'
+زرخیزہ,zarkhaiza,garbled form of زرخیز (zarkhez = fertile)
+ٹماٹے,tamatay,garbled/dialectal for ٹماٹر (tamatar = tomato)
+گنے,ganay,sugarcane (plural/oblique of گنا)
+گنا,gana,sugarcane (noun) / 'counted' (verb past participle) - context dependent
+زرخیزے,zarkhezay,garbled form of زرخیز (fertile)
+بشیر,Bashir,personal name
+بتو,batao,garbled imperative 'tell' (بتاؤ)
+ہری پل,Haripur,garbled place name Haripur (ہری پور)
+ہزارہ,Hazara,region name Hazara
+مکئی,makai,maize/corn
+سید,Syed,title/name Syed
+بارش,barish,rain
+ویل,veil,unclear - could be 'veil' loanword or garbled word - low confidence SKIP
+ٹیپ,tape,loanword 'tape'
+خصل,khasal,garbled form of فصل (fasal = crop)
+ویٹ,wait,loanword 'wait' or 'wheat' garbled - ambiguous
+آلو,aloo,potato
+ریٹز,rates,garbled 'rates' (ریٹس)
+سیال کورڈ,Sialkot,garbled place name Sialkot
+ڈسکہ,Daska,place name Daska
+اس,uss,'that/this' pronoun
+بنوں,Bannu,place name Bannu
+اگاہ,agah,'aware' or garbled اگانا (grow)
+واسط,waastay,'for the sake of'
+کاشت,kasht,cultivation
+ریٹ,rate,loanword 'rate'
+ایمپریشن,impression,loanword 'impression'
+گھام پور,Gojra,"unclear place name garbled - low confidence, possibly 'Ghanpur' - SKIP"
+مصمم,musammam,'determined/resolved'
+دیسیٹ,dessert,garbled loanword 'dessert'
+یور,your,garbled loanword 'your' or 'year' - ambiguous
+آسان,aasan,'easy'
+آل,aal,unclear short form - possibly 'all' loanword - low confidence
+ریڈ,red,loanword 'red'
+آرے,aray,interjection 'oh!'
+مہتر,mehtar,'chief/sweeper' (traditional term)
+اوے,oye,interjection 'hey'
+مبیشی,مویشی,garbled form of مویشی (mawaishi = livestock)
+ٹینک,tank,loanword 'tank'
+کاڑا,kara,garbled form - unclear - low confidence
+علم,ilm,'knowledge'
+کاریٹ,carrot,garbled loanword 'carrot'
+فیڈ,feed,loanword 'feed'
+موسم,mausam,weather/season
+اسلام آباد علیکم,Islamabad Alaikum,garbled combo of 'Islamabad' and greeting - likely ASR merge error
+ضلع,zila,district
+اپ بخیر,aap bakhair,greeting 'you are well'
+دیہال,dehaat,garbled form of دیہات (dehaat = village) - low confidence
+سو روپے آجے,so rupay aajay,garbled phrase 'hundred rupees come'
+اگ,aag,'fire' (missing alif)
+ٹیڑے,teday,'crooked/bent' (dialectal)
+بہرے,behray,'deaf' (oblique/plural)
+خمس,khums,Islamic term for one-fifth levy
+اس لگے,uss lagay,'that seemed/felt'
+کیاریٹ,carrot,garbled loanword 'carrot'
+بشیڑ,Bashir,garbled personal name Bashir
+شیخ,Sheikh,title/name
+مشیر,mushir,'advisor' - also often garbled form of Bashir
+اس کی عزت,uss ki izzat,'his/her honor'
+پیٹ,pait,'stomach'
+بنایں,banaein,'let's make' (garbled بنائیں)
+کلو,kilo,loanword 'kilo'
+بشیرے,Bashiray,garbled/oblique form of Bashir
+اج,aaj,'today' (missing alif)
+اچھے,achay,'good' (plural/oblique)
+لاہور,Lahore,city name
+بھروسکتا,bhar sakta,garbled 'can fill' (بھر سکتا)
+ٹماٹر,tamatar,tomato
+فیصلہ بعد,faisla baad,'decision after' - garbled phrase
+فیصلہ بات,faisla baat,'decision matter' - garbled phrase
+گرنے,girnay,'to fall'
+مہر,mehar,'seal/stamp' or name Mehr
+پیاز,pyaz,onion
+بھینس,bhains,buffalo
+بتائیں,batayein,'please tell'
+تیرے,teray,'your' (informal)
+چالوں,chaalon,'moves/tricks' (oblique plural)
+اساں,assan,'we' (Punjabi/dialectal)
+بار,baar,'time/occasion' or 'burden'
+پونڈی,Pindi,garbled short form of Rawalpindi
+استعمال کروں گا,istemaal karoon ga,'I will use'
+بشید,Bashir,garbled personal name Bashir
+ربلپینی,Rawalpindi,garbled place name Rawalpindi
+ازاد جمعہ,Azad Jumma,garbled - possibly 'Azad' + 'Friday'
+جمع,jama,'gathered/collected'
+لگا ستا,laga sakta,garbled 'can apply' (لگا سکتا)
+کتب,kutub,'books' (Arabic plural)
+کسو,kisu,garbled/dialectal form of کسی (kisi = someone)
+اعلی,aala,'superior/high quality'
+جؤ,jau,barley
+اسلام و برد,Islamabad,garbled place name Islamabad
+سینیر,senior,loanword 'senior'
+اسام آباد,Islamabad,garbled place name Islamabad
+ٹرابل,trouble,loanword 'trouble'
+سٹالبری,strawberry,garbled loanword 'strawberry'
+حیثل آباد,Hyderabad,garbled place name Hyderabad
+روپے,rupay,rupees
+اسلام آباد آباد,Islamabad,garbled/duplicated place name Islamabad
+سلاد فلوٹس,salad fruits,garbled loanword combo 'salad fruits'
+کیاریڈ چر,agriculture,garbled loanword 'agriculture'
+ہج,hajj,pilgrimage 'Hajj'
+پھلی,phali,'pod/bean'
+ایٹی ایم,ATM,loanword 'ATM'
+شملہ مرچ,shimla mirch,bell pepper/capsicum
+فرقہ,firqa,'sect'
+گیپ,gap,loanword 'gap'
+بھکر,Bhakkar,place name Bhakkar
+ہمارہ,hamara,'our' (garbled/misspelled)
+سیب,seb,apple
+دل,dil,heart
+تل,til,sesame seed
+گرل برگر,grill burger,loanword combo 'grill burger'
+متائیں,batayein,garbled 'please tell' (بتائیں)
+ماں,maa,mother
+مہتری,mehtari,oblique/derived form of مہتر (mehtar)
+سندھی,Sindhi,relating to Sindh / Sindhi language
+بسم,bismi,start of 'Bismillah'
+پودے پھلوں,poday phalon,'plants fruits' - garbled phrase
+ویسیم,Waseem,"personal name Waseem, garbled"
+اردر,order,garbled loanword 'order'
+بشیرہ,Bashira,garbled/feminine form of Bashir
+بی,bi,prefix/title (short for Bibi)
+مکہ,Makkah,city name Mecca
+مری,Murree,place name Murree
+دانے,daanay,'grains/seeds'
+مویشی,mawaishi,livestock
+یہاں,yahan,'here'
+زہر,zeher,poison
+محسوس,mehsoos,'felt/sensed'
+سندھ,Sindh,province name Sindh
+دپال فور,Depalpur,garbled place name Depalpur
+بشیر خان,Bashir Khan,personal name
+جوار,jowar,sorghum (crop)
+غنم,ghanam,Arabic for wheat/grain
+پتے,pattay,'leaves'
+ٹی ایچ سکس,TH6,code/label 'TH-6' (crop variety)
+ایلیمنٹ,element,loanword 'element'
+لینڈ,land,loanword 'land'
+کیسا رہی,kaisa rahi,garbled 'how was' phrase
+رپلائی,reply,garbled loanword 'reply'
+رات,raat,night
+یوریا,urea,fertilizer 'urea'
+ڈی اے پی,DAP,fertilizer 'DAP' (Diammonium Phosphate)
+سوات,Swat,place name Swat
+ذرا,zara,'a little/just'
+پسند ہوئیے گی,pasand ho jaye gi,garbled 'will be liked' phrase
+ریتی,raiti,'sandy'
+انگلین لینڈ,England,garbled loanword 'England'
+کماد,kamaad,sugarcane crop (dialectal)
+ریلی,rally,loanword 'rally'
+بزار,bazaar,garbled form of بازار
+حیدرآباد تل,Hyderabad,"garbled place name, extra fragment attached"
+اے آئی,AI,loanword 'AI' (Artificial Intelligence)
+کیٹ,cat,loanword 'cat' or garbled 'kit'
+بشیریا,Bashiriya,garbled/derived form of Bashir
+کمپریچر,compressure,garbled 'temperature' or 'compressor'
+ٹپریچر,temperature,garbled loanword 'temperature'
+بلا جھجھک,bila jhijhak,'without hesitation'
+پیچھتے,pichhtay,garbled 'behind' (پیچھے)
+بندی,bandi,'tied/bound' or captivity
+کال,kaal,'famine/scarcity'
+سوٹھے,sonthay,garbled/dialectal form relating to dry ginger or crop term
+شیطان,shaitan,devil/satan
+خواص خیلے,Khwaza Khela,garbled place name Khwaza Khela
+آندھے,andhay,'blind' (oblique/plural)
+دسی,desi,garbled/dialectal form of دیسی (desi = local/native)
+دیسی مینہ,desi murgha,garbled - possibly 'desi chicken/rain'
+جمبو,jumbo,loanword 'jumbo'
+گلوں,gulon,'flowers' (oblique plural)
+گھٹائی,ghatai,'reduction' or garbled term
+بحری,bahri,'naval/maritime'
+سبسڈی,subsidy,loanword 'subsidy'
+وعلیکم,walaikum,'and upon you' - part of greeting response
+بھرسی رہو,bharsi raho,garbled phrase - unclear meaning
+آٹا,aata,flour
+تم,tum,'you' (informal)
+کرو,karo,imperative 'do'
+ریزہ,reza,'particle/fragment'
+سیارہ,sayara,'planet'
+کڑیوں,karyon,'links/rungs' (oblique plural)
+سٹوری,story,loanword 'story'
+انگلیش,English,loanword 'English'
+سنڈی,sundi,'caterpillar/pest' (agricultural term)
+بماری,bimari,garbled form of بیماری (illness)
+یہ بتو,yeh batao,garbled 'tell this'
+پختون خواہ,Pakhtunkhwa,part of province name Khyber Pakhtunkhwa
+نیاب,naib,'deputy' (garbled)
+ٹھوڑے,thoray,'a few/little'
+کاشت پہ,kasht pe,'on cultivation'
+ہند,Hind,India (historical/poetic term)
+ہندو,Hindu,religion/ethnic term
+ٹینٹ,tent,loanword 'tent'
+کیا سا گیا,kya sa gaya,garbled phrase - unclear
+گلاب,gulaab,rose
+اسلام,Islam,religion name
+اوکاڑہ,Okara,place name Okara
+دیپالپور,Depalpur,place name Depalpur
+ملیکہ,malika,'queen'
+رسٹ,rust,loanword 'rust' (crop disease)
+چھے,cheh,'six' (garbled چھ)
+کمبائن,combine,loanword 'combine' (harvester)
+کمبائن ہائرویسٹر,combine harvester,loanword 'combine harvester'
+کمبائن آر ویسٹر,combine harvester,garbled loanword 'combine harvester'
+پٹائی,pitai,'threshing/beating'
+اسلمباد,Islamabad,garbled place name Islamabad
+ٹماٹرز,tomatoes,garbled loanword 'tomatoes'
+رقمان,raqm,'amount/sum' (garbled)
+وڈے,waday,'big' (dialectal/Punjabi)
+مظفرآباد,Muzaffarabad,city name
+جمہور,jamhoor,'the public/masses'
+بہاولنگر,Bahawalnagar,place name
+صورتی,soorati,'facial/related to appearance'
+بھی,bhi,'also/too'
+جھٹاؤ,jhatao,imperative 'shake off'
+بھیج,bhej,imperative 'send'
+اسلام ایکم,Assalam Alaikum,garbled greeting
+لیہ,Layyah,place name Layyah
+گرماں,garmi,garbled form of 'heat/summer'
+کمی,kami,'shortage/deficiency'
+کنگ,king,loanword 'king'
+وائس,voice,loanword 'voice'
+مینڈی,mandi,market (garbled)
+سٹرانگ,strong,loanword 'strong'
+کاٹ لوں گا,kaat loon ga,'I will cut'
+اوپر,oopar,'above/on top'
+ہرویسٹر,harvester,garbled loanword 'harvester'
+ٹیم,team,loanword 'team'
+آباد,abad,'populated/settled' (also place-name suffix)
+تو,tou,'so/then'
+پیاری کپاس کاشت کرن,pyari kapaas kasht karna,garbled phrase 'to cultivate lovely cotton'
+اتنے,itnay,'this much/many'
+ظہر,zuhr,noon (prayer time)
+دیدی,didi,"'sister' (informal, Hindi-origin) or garbled form"
+اٹھتیس,arhtees,'thirty-eight' (garbled)
+ایک آف,ایک اف,garbled - likely '1 off' or misheard number
+پینتی سو,paintees sau,'thirty-five hundred'
+اڑتالیس سو,artalees sau,'forty-eight hundred'
+ہوں,hoon,'am' (verb)
+لیکن,lekin,'but'
+چاول,chawal,rice
+ہائبرڈ,hybrid,loanword 'hybrid'
+ہائیبرڈ,hybrid,loanword 'hybrid' (variant spelling)
+باسمتی,basmati,basmati (rice variety)
+خالد,Khalid,personal name
+ایواکاڈو,avocado,loanword 'avocado'
+مکان,makaan,'house'
+جات,jaat,'caste/type' or 'goes' (garbled)
+میڈ,made,loanword 'made'
+پیدا ہوں,paida hoon,'I am born/produced'
+بیٹی,beti,daughter
+ٹائٹ,tight,loanword 'tight'
+مضبوط,mazboot,'strong/sturdy'
+رندم,random,loanword 'random' (garbled)
+رکھاو,rakhao,imperative 'keep it'
+اسلام ویکم,Assalam Alaikum,garbled greeting
+ہسٹری,history,loanword 'history'
+نیٹرو فارس,nitrophos,garbled loanword 'nitrophos' (fertilizer)
+وہ,woh,'he/she/it/that'
+ستمبر,September,month name (garbled loanword)
+پنجاب,Punjab,province name
+سبسڈیو,subsidy,garbled loanword 'subsidy'
+ببلر ایریگیشن سسٹم,bubbler irrigation system,garbled loanword 'bubbler irrigation system'
+گلگٹو,Gilgit,garbled place name Gilgit
+زری مشینری,zarai machinery,'agricultural machinery' (garbled)
+کل,kal,'yesterday/tomorrow' or 'total'
+ٹی ایس تھری,TS3,code/label 'TS-3' (crop variety)
+پاک پیدا,Pak paida,garbled fragment 'Pak produced'
+تماکو,tambaku,tobacco (garbled)
+راگنگ,ragging,loanword 'ragging'
+دیری گاہی,dairy gahi,garbled - possibly 'dairy' related
+گاہی,gahi,garbled/dialectal - 'sometimes' (کبھی گاہے)
+لوسن,lucerne,loanword 'lucerne' (alfalfa crop) - garbled
+بہتی مال,behti maal,garbled - possibly 'flowing wealth'
+خوشحالی,khushhali,'prosperity'
+سبحانہ,subhana,'glory be to' (religious term)
+فوکس,focus,loanword 'focus'
+ایم بی,MB,loanword/abbreviation 'MB' (megabyte)
+فاسق,fasiq,'sinner/immoral person'
+بگڑی,bigri,'spoiled/gone wrong'
+لڑو,laro,imperative 'fight'
+جی آئی ٹی,GIT,loanword 'GIT' (version control)
+فارمین,foreman,loanword 'foreman' (garbled)
+شاخ تراثی,shaakh tarashi,"'pruning' (agricultural term, garbled)"
+معنی,mani,'meaning'
+جنگلے دیر,jungle dir,garbled fragment - possibly 'jungle' + place 'Dir'
+دوجا,dooja,'second/other' (dialectal)
+نو دس,nau das,'nine ten' (numbers)
+سوشی,sushi,loanword 'sushi'
+یقین,yaqeen,'belief/certainty'
+دل کا,dil ka,'of the heart'
+پیشہ,pesha,'profession'
+منجی,manji,'cot/bed' (Punjabi)
+گاں,gaon,garbled form of 'gaon' (village)
+چالیٹی,charity,loanword 'charity' (garbled)
+میڈیو,medio,"garbled - unclear, possibly 'medium'"
+نبیہ,Nabiha,"personal name, garbled"
+اسکار کوٹ,Askar Kot,garbled place name
+آلوئے,aloo,garbled form of 'aloo' (potato)
+ڈی آئی خان,DI Khan,place name Dera Ismail Khan (abbreviated)
+پروسیجر,procedure,loanword 'procedure'
+قطر,Qatar,country name
+بشیر جان,Bashir Jaan,"personal name, garbled"
+پھل,phal,'fruit'
+عمران,Imran,personal name
+پٹا ہوا گاس,pata hua ghaas,garbled 'withered/torn grass'
+کھال,khaal,'skin/hide' or 'water channel' (agri term)
+دھان,dhaan,paddy/rice crop
+مزدور,mazdoor,labourer
+باوالدین,walidain,garbled form of والدین (parents)
+کلر,kalar,'saline/barren land' (agri term)
+صحیب,saheb,garbled form of صاحب (sir/mister)
+نیشان,nishan,'mark/sign'
+سمجھاو,samjhao,imperative 'explain'
+فری ایم بی,free MB,garbled loanword 'free MB'
+دلی,Delhi,city name / or 'of heart' (دلی)
+معلومات,maloomat,'information'
+فیصلہ,faisla,'decision'
+دیر,Dir,place name Dir / or 'delay' (دیر)
+ایس ایم,SM,abbreviation
+مچھاں,machhli,garbled form of 'fish'
+کاٹ لی,kaat li,'cut it' (past tense)
+باب,baab,'chapter/door'
+مصوروں,musawwaron,'painters' (oblique plural)
+ڈائرہ ملخان,Dera Malikhan,garbled place name fragment
+گنّا,ganna,sugarcane
+گاز,gaaz,garbled form of 'gas' or agri term
+یہاں کھانا,yahan khana,'food here' phrase
+خرید,khareed,'purchase'
+ریفر,refer,loanword 'refer'
+مال,maal,'goods/wealth'
+خیل,khel,'clan/tribe' (Pashtun naming suffix) or 'game' (کھیل)
+موسیقی,mausiqi,'music'
+ثانیہ,Sania,personal name
+رٹس,rates,garbled loanword 'rates'
+فتویٰ,fatwa,religious ruling
+سانگ,song,loanword 'song' or garbled 'swaang' (mimicry)
+ہاریور,harvester,garbled loanword 'harvester'
+کیاری,kyari,'garden bed/plot'
+بیچن,bechain,garbled form of 'restless'
+جی,ji,'yes' (polite particle)
+بارہو,barha,garbled form of 'increase'
+كيلا,kela,banana
+عشق,ishq,'love'
+مکئی صبایا,makai sabzia,garbled 'maize vegetable' fragment
+وقعہ,waqya,'incident/event' (garbled واقعہ)
+کپاس ہوگانا,kapaas ho ga na,"garbled 'cotton will happen, right?'"
+ویر,veer,'brother/brave' (dialectal)
+پیسٹ,paste,loanword 'paste' or 'pest' (ambiguous)
+تبصرر,tabsara,garbled form of 'commentary'
+مسمی,musamma,'named/titled' (legal term)
+برش,brush,loanword 'brush'
+کمانڈ,command,loanword 'command'
+بشیریاں,Bashiryan,garbled/plural form of Bashir
+اولیاء,auliya,'saints'
+حسن ابدال,Hasan Abdal,place name
+صلی اللہ,sallallah,part of Islamic salutation
+عظیم,azeem,'great/grand'
+برن,burn,loanword 'burn' (garbled)
+اے پی آئی,API,loanword 'API'
+جانو,jaanu,'darling' (informal) or 'know' imperative
+بزرگ,buzurg,'elder/saint'
+ہری پور,Haripur,place name
+مقدمہ,muqadma,'court case'
+مراقب,muraqib,'observer/guardian'
+مائی,mai,'mother/lady' (dialectal) or garbled loanword 'my'
+زرخیز,zarkhez,'fertile'
+کیڑی,keeri,garbled form of کیڑا (insect)
+ٹریکٹر,tractor,loanword 'tractor'
+آگ,aag,'fire'
+شورکوٹ,Shorkot,place name Shorkot
+پوست,poust,'poppy' or 'skin/peel' (agri term)
+ملکیہ,malkia,'ownership' related term
+الصلاة والسلام,Assalatu Wassalam,Islamic salutation phrase
+کمان,kamaan,'bow' or 'command'
+خدم,khadim,garbled form of 'servant'
+پیازی,pyazi,'onion-related/onion-colored'
+ڈلر,dollar,loanword 'dollar' (garbled)
+کھسان,kisaan,garbled form of 'farmer' (کسان)
+گیم,game,loanword 'game'
+منگی,mangi,'engagement' (dialectal) or 'demanded'
+فلم,film,loanword 'film'
+مانگ,maang,'demand' or 'parting of hair'
+دیسی مینے,desi murghi,garbled - possibly 'desi hen/chicken'
+بہان,bahaana,garbled form of 'excuse'
+واٹس ایپ,WhatsApp,loanword 'WhatsApp'
+ووئس,voice,garbled loanword 'voice'
+کراسٹ,crust,loanword 'crust' (garbled)
+بھائیان,bhaiyaan,'brothers' (oblique plural)
+سپید,sapaid,"'white' (Persian-origin, garbled سفید)"
+لگایا,lagaya,'planted/applied'
+کما چلو,kama chalo,garbled 'go earn' phrase
+تہاں,tahan,garbled form of 'wahan/yahan' (there/here)
+تدارک,tadaruk,'remedy/prevention'
+کیڑے,keeray,'insects'
+تحریک,tehreek,'movement'
+بریک آٹ,break out,loanword 'breakout' (garbled)
+بھائی,bhai,brother
+وصل,wasl,'union/connection'
+بیج,beej,seed
+دے گا,day ga,'will give'
+کسٹ,cost,loanword 'cost' (garbled)
+پیسٹیل,pastel,loanword 'pastel' (garbled)
+شہر بیج,shehar beej,garbled 'city seed' fragment
+ڈرل,drill,loanword 'drill'
+کیلبریشن,calibration,loanword 'calibration'
+انسداد,insidaad,'eradication/control'
+نقصان دہ,nuqsaan deh,'harmful'
+چوہے,chuhay,'mice/rats'
+گھنٹوں,ghanton,'hours' (oblique plural)
+ہوتا ہے,hota hai,'happens/is'
+ماشائی,mashai,"garbled - unclear, possibly Masha Allah fragment"
+کس ٹائم,kis time,'what time' (garbled loanword mix)
+جون,June,month name (garbled loanword)
+پرسن,person,loanword 'person'
+گروت,growth,loanword 'growth' (garbled)
+اگرانا,ugana,garbled form of 'to grow' (اگانا)
+آپ ووائس,aap voice,garbled loanword combo 'your voice'
+سبجی,sabzi,vegetable (garbled)
+کپ,cup,loanword 'cup'
+موئی,moi,garbled - 'dead' (feminine) dialectal
+تئیس جون,teis June,'23rd June' (garbled loanword mix)
+گرین,green,loanword 'green'
+امکانوں,imkanon,'possibilities' (oblique plural)
+پرسند,pasand,garbled form of 'liked/preference'
+پرسنٹ,percent,loanword 'percent'
+دھر,dhar,'direction/side' or 'edge (of blade)'
+بھاری میرا,bhaari mera,'my heavy' - garbled phrase
+خواہش,khwahish,'wish/desire'
+پل,pul,'bridge' or 'moment'
+بتاتے,batatay,'telling'
+کیک,cake,loanword 'cake'
+کیٹو,keto,loanword 'keto'
+سل رہی ہے,sil rahi hai,'is being stitched'
+اگانی,agani,garbled form of 'growing' (اگانا)
+اگاؤں,agaon,'I grow' (اگاؤں)
+بحاول کریں,bahaal karein,garbled form of 'restore/reinstate'
+موضوع وقت,mauzu waqt,'topic time' - garbled phrase
+آبپاشی,aabpashi,irrigation
+فصل,fasal,crop
+عدل بدل,adal badal,garbled form of 'ادلا بدلی' (exchange)
+گاما,Gama,personal name Gama
+ہلو,hello,loanword 'hello' (garbled)
+اوڈی,Audi,brand name (garbled) or unclear
+گولاں,golan,'bullets/pills' (oblique plural)
+بھلے گا,bhulay ga,'will forget'
+کیدھر,kidhar,'which way/where'
+سرسا,Sirsa,"place name Sirsa, or 'sarson' (mustard) garbled"
+سپیسر,spacer,loanword 'spacer'
+خباب,Khabbab,personal name
+تیسر,teesra,garbled form of 'third'
+میرپور,Mirpur,place name
+ان پہ,un pe,'on them'
+بھیرہ,Bhera,place name Bhera
+غائب,ghaib,'absent/missing'
+جرام,gram,loanword 'gram' (garbled)
+لہسن,lehsun,garlic
+موسم کاربتائی,mausam ka bataiye,garbled 'please tell weather' phrase
+کریٹ,crate,loanword 'crate'
+مارے,maray,'killed/hit'
+سپرٹ,spirit,loanword 'spirit' (garbled)
+پسرور,Pasrur,place name
+حضرتسلام,Hazrat Salam,garbled honorific+greeting fragment
+شیمپ,shampoo,garbled loanword 'shampoo'
+اج کال,aaj kal,'these days' (garbled آج کل)
+فعل,fail,'verb/action'
+بنے,banay,'made/become'
+اجان,azaan,garbled form of 'call to prayer'
+سیل,sale,loanword 'sale'
+خفت,khifat,'shame/embarrassment'
+کھانتے,khaantay,'coughing' (dialectal)
+شہرت,shohrat,'fame'
+تدریب,tadreeb,'training' (garbled)
+مطلع,mutla,'informed/aware'
+کھان,khaan,'mine (mineral)' or garbled 'khaana' (food)
+مقائد,maqasid,garbled form of 'objectives'
+پی ٹی سی ایل,PTCL,loanword/brand 'PTCL' (telecom company)
+پوکھ جاؤں,pooch jaon,garbled 'let me ask' phrase
+ٹھیکی داری,thekedari,garbled form of 'contracting'
+اٹک,Attock,place name Attock
+چوہا,chuha,mouse/rat
+پنیری,paniri,'seedling/nursery' (agri term)
+بھرین,behtareen,garbled form of 'best/excellent'
+تمہیں,tumhein,'to you'
+ریتلی,retli,'sandy' (soil)
+صورتحال,soorat-e-haal,'situation'
+تھرپارکر,Tharparkar,place name
+بتالا,Batala,place name (garbled)
+سپرے,spray,loanword 'spray'
+کیلا,kela,banana
+آلات,aalat,'instruments/tools'
+ساہیووال,Sahiwal,place name
+یہ,yeh,'this'
+اس کا,uss ka,'his/its'
+جالے,jalay,'burns' or 'cobwebs' (dialectal)
+بلوث,Baloch,garbled ethnic/place name Baloch
+مالکان,malikaan,'owners'
+گیٹ,gate,loanword 'gate'
+بھائیہ,bhaiya,'brother' (informal)
+پچاس,pachaas,fifty
+پہنچ,pohanch,'reach/arrival'
+بھینسیں,bhainsein,'buffaloes'
+گھوڑے,ghoray,'horses'
+بھنسیں,bhainsein,garbled form of 'buffaloes'
+گوڑوں,ghoron,garbled form of 'horses' (oblique plural)
+ٹن,ton,loanword 'ton'
+بیلا,bela,'time/season' or personal name Bella
+صورت حالیں,soorat-e-haalein,'situations' (plural)
+بعد,baad,'after'
