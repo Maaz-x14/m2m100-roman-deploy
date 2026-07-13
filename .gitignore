@@ -1,4 +1,10 @@
 layer1_results.csv
-faiq-data.csv
 layer1_results.csv.checkpoint
+layer2_results.csv
+layer2_results.csv.checkpoint
+layer2_results.csv.metrics.json
+layer2_results.csv.selection_record.csv
+faiq-data.csv
 .env
+__pycache__/
+*.pyc
