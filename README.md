@@ -23,9 +23,23 @@ romanize_api/
 │   └── vocab.json
 ├── scripts/
 │   └── start.sh           # production startup script
+├── eval_layer1.py         # layer 1 evaluation of model outputs
+├── eval_layer2_openai.py  # layer 2 evaluation using OpenAI API as judge
+├── inspect_layer1.py      # inspect/debug layer 1 results
+├── estimate_cost.py       # estimate OpenAI API cost for layer 2 eval
+├── filter_issue_type.py   # filter evaluation results by issue type
+├── remove_reps.py         # dedupe repeated words from incorrect-words lists
 ├── requirements.txt
 └── README.md
 ```
+
+---
+
+## Architecture
+
+![Romanize API architecture](diagrams/api_architecture.svg)
+
+Client requests hit the FastAPI router (`app/api.py`), which is initialized via the app factory's lifespan hook (`app/main.py`) on startup. `app/model.py` loads the base M2M100 checkpoint, applies the bug #3 patch, and merges the LoRA adapter weights into a single warm model before the service starts accepting traffic.
 
 ---
 
@@ -251,34 +265,39 @@ Mirrors the training constraint (bug #10 in train.py). DataParallel + fp16 + cus
 
 ---
 
-## Running as a systemd service (DigitalOcean GPU server)
+## Baseline performance (CPU)
 
-```ini
-# /etc/systemd/system/romanize-api.service
+`eval_layer1.py` was run against all 2189 dataset rows on **CPU** (no GPU) as a baseline measurement of the fine-tuned model's raw inference speed, before any deployment optimizations:
 
-[Unit]
-Description=Romanize API — Urdu to Roman Urdu transliteration
-After=network.target
+| Metric | Value |
+|---|---|
+| Total wall clock | 9142.81s (~2.5 hours) |
+| Avg latency / row | 4.177s |
+| Throughput | 0.239 rows/sec |
+| Batches | 137 |
+| Min / max batch latency | 8.72s / 402.78s |
+| Flagged rows | 121 (93 script leakage, 26 repeat loop, 13 length outlier) |
 
-[Service]
-Type=simple
-User=ubuntu
-WorkingDirectory=/home/ubuntu/romanize_api
-Environment=PORT=2000
-Environment=MODEL_DIR=./fine_tuned_model
-ExecStart=/home/ubuntu/romanize_api/scripts/start.sh
-Restart=on-failure
-RestartSec=10
-StandardOutput=journal
-StandardError=journal
+This is the number the GPU deployment (see "Why workers=1" above) is meant to improve on — there is no GPU-mode benchmark run yet, so a direct CPU-vs-GPU speedup figure isn't available. Treat CPU numbers as the pre-optimization floor.
 
-[Install]
-WantedBy=multi-user.target
-```
+For reference, `eval_layer2_openai.py` (a separate LLM-judge pass over the same 2189 rows, using GPT-5.4-mini via the OpenAI API) completed in 275.25s across 15 batches — not a fair comparison to layer 1 since it's a different model doing a different task (judging quality, not transliterating), but included here since it's the other end-to-end timing we have.
 
-```bash
-sudo systemctl daemon-reload
-sudo systemctl enable romanize-api
-sudo systemctl start romanize-api
-sudo journalctl -u romanize-api -f   # tail logs
-```
+---
+
+## Evaluation & data-processing scripts
+
+![Evaluation pipeline architecture](diagrams/eval_pipeline_architecture.svg)
+
+These scripts support the model evaluation workflow and are separate from the deployed API service.
+
+| Script | Purpose |
+|---|---|
+| `eval_layer1.py` | Runs the first evaluation pass over the model's transliteration outputs and writes `layer1_results.csv`. |
+| `inspect_layer1.py` | Inspects/debugs `layer1_results.csv` output. |
+| `eval_layer2_openai.py` | Runs a second evaluation pass using the OpenAI API as a judge to catch phonetic/semantic mismatches; writes `layer2_results.csv`. |
+| `estimate_cost.py` | Estimates OpenAI API token cost for `eval_layer2_openai.py` before running the full dataset. |
+| `filter_issue_type.py` | Filters `layer2_results.csv` (or similar) by a specific issue type for review. |
+| `remove_reps.py` | Deduplicates repeated entries in flagged word lists (e.g. `incorrect_words_claude.md`), preserving first-occurrence order. |
+
+**Note:** Evaluation outputs (`layer1_results.csv`, `layer2_results.csv`, and their `.checkpoint` / `.metrics.json` / `.selection_record.csv` files) are treated as run artifacts, not source-controlled data — see `.gitignore`.
+
