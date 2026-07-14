@@ -15,7 +15,7 @@ you're reading this weeks/months after it was written.
 USAGE
 -----
 python estimate_cost.py \
-    --csv layer1_results.csv \
+    --csv ../../data/layer1/layer1_results.csv \
     --model gpt-5.4-mini \
     --scope all              # or: triage (flagged + sample only)
     --sample-size 100        # only used if --scope triage

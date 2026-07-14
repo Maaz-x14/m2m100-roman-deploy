@@ -23,8 +23,8 @@ export OPENAI_API_KEY=your_key_here
 USAGE
 -----
 python eval_layer2_openai.py \
-    --layer1-csv layer1_results.csv \
-    --output layer2_results.csv \
+    --layer1-csv ../../data/layer1/layer1_results.csv \
+    --output ../../data/layer2/layer2_results.csv \
     --scope all \
     --batch-size 150 \
     --model gpt-5.4-mini
@@ -32,7 +32,7 @@ python eval_layer2_openai.py \
 RESUMABLE — same pattern as Layer 1: writes results incrementally, keeps a
 checkpoint file of processed message_ids, safe to re-run after interruption.
 
-BEFORE RUNNING: use estimate_cost.py against your real layer1_results.csv
+BEFORE RUNNING: use estimate_cost.py against your real ../../data/layer1/layer1_results.csv
 to see actual expected cost first. Do not skip this step.
 """
 
@@ -353,7 +353,7 @@ def process_batch_with_fallback(
 def main():
     parser = argparse.ArgumentParser(description="Layer 2: OpenAI-based suspicious-pattern triage")
     parser.add_argument("--layer1-csv", required=True, help="Path to Layer 1 output CSV")
-    parser.add_argument("--output", default="layer2_results.csv", help="Output CSV path")
+    parser.add_argument("--output", default="../../data/layer2/layer2_results.csv", help="Output CSV path")
     parser.add_argument("--scope", default="triage", choices=["all", "triage"],
                          help="'all' = every row; 'triage' = flagged + sampled unflagged only")
     parser.add_argument("--sample-size", type=int, default=100, help="Only used with --scope triage")

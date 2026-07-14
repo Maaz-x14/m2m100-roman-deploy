@@ -8,12 +8,12 @@ fine-tuning data generation.
 USAGE
 -----
 python filter_issue_type.py \
-    --input layer2_results.csv \
+    --input ../../data/layer2/layer2_results.csv \
     --issue-type phonetic_mismatch \
-    --output phonetic_mismatch_rows.csv
+    --output ../../data/wordlists/phonetic_mismatch_rows.csv
 
 Defaults to --issue-type phonetic_mismatch and --output
-<issue_type>_rows.csv if not specified.
+../../data/wordlists/<issue_type>_rows.csv if not specified.
 """
 
 import argparse
@@ -23,14 +23,14 @@ import sys
 
 def main():
     parser = argparse.ArgumentParser(description="Filter Layer 2 results by openai_issue_type")
-    parser.add_argument("--input", default="layer2_results.csv", help="Path to layer2_results.csv")
+    parser.add_argument("--input", default="../../data/layer2/layer2_results.csv", help="Path to layer2_results.csv")
     parser.add_argument("--issue-type", default="phonetic_mismatch",
                          help="Value of openai_issue_type to filter for")
     parser.add_argument("--output", default=None,
-                         help="Output CSV path (default: <issue_type>_rows.csv)")
+                         help="Output CSV path (default: ../../data/wordlists/<issue_type>_rows.csv)")
     args = parser.parse_args()
 
-    output_path = args.output or f"{args.issue_type}_rows.csv"
+    output_path = args.output or f"../../data/wordlists/{args.issue_type}_rows.csv"
 
     with open(args.input, encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f)

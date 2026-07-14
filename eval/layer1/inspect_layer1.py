@@ -6,7 +6,7 @@ Gemini/OpenAI cost or deciding full-coverage vs sampled Layer 2 scope.
 
 USAGE
 -----
-python inspect_layer1.py --csv layer1_results.csv
+python inspect_layer1.py --csv ../../data/layer1/layer1_results.csv
 """
 
 import argparse

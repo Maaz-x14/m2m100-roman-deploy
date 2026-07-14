@@ -8,10 +8,10 @@ flags, and records latency metrics for benchmarking.
 USAGE
 -----
 python eval_layer1.py \
-    --csv faiq-data.csv \
+    --csv ../../data/raw/faiq-data.csv \
     --url http://localhost:2000/romanize \
     --batch-size 150 \
-    --output layer1_results.csv
+    --output ../../data/layer1/layer1_results.csv
 
 RESUMABLE
 ---------
@@ -332,7 +332,7 @@ def main():
     parser.add_argument("--csv", required=True, help="Path to faiq-data.csv")
     parser.add_argument("--url", default="http://localhost:2000/romanize", help="Romanize API endpoint")
     parser.add_argument("--batch-size", type=int, default=16, help="Rows per HTTP call")
-    parser.add_argument("--output", default="layer1_results.csv", help="Output CSV path")
+    parser.add_argument("--output", default="../../data/layer1/layer1_results.csv", help="Output CSV path")
     parser.add_argument("--timeout", type=int, default=1800, help="Per-batch HTTP timeout in seconds (CPU can be slow)")
     args = parser.parse_args()
 
