@@ -23,12 +23,34 @@ romanize_api/
 │   └── vocab.json
 ├── scripts/
 │   └── start.sh           # production startup script
-├── eval_layer1.py         # layer 1 evaluation of model outputs
-├── eval_layer2_openai.py  # layer 2 evaluation using OpenAI API as judge
-├── inspect_layer1.py      # inspect/debug layer 1 results
-├── estimate_cost.py       # estimate OpenAI API cost for layer 2 eval
-├── filter_issue_type.py   # filter evaluation results by issue type
-├── remove_reps.py         # dedupe repeated words from incorrect-words lists
+├── eval/
+│   ├── layer1/
+│   │   ├── eval_layer1.py          # layer 1 evaluation of model outputs
+│   │   └── inspect_layer1.py       # inspect/debug layer 1 results
+│   └── layer2/
+│       ├── eval_layer2_openai.py   # layer 2 evaluation using OpenAI API as judge
+│       ├── estimate_cost.py        # estimate OpenAI API cost for layer 2 eval
+│       └── filter_issue_type.py    # filter evaluation results by issue type
+├── wordlist_cleanup/
+│   └── remove_reps.py              # dedupe repeated words from incorrect-words lists
+├── data/
+│   ├── raw/
+│   │   └── faiq-data.csv           # input dataset
+│   ├── layer1/
+│   │   ├── layer1_results.csv*     # layer 1 evaluation outputs (gitignored)
+│   │   ├── layer1_results.csv.checkpoint
+│   │   └── layer1_results.csv.metrics.json
+│   ├── layer2/
+│   │   ├── layer2_results.csv*     # layer 2 evaluation outputs (gitignored)
+│   │   ├── layer2_results.csv.checkpoint
+│   │   ├── layer2_results.csv.metrics.json
+│   │   └── layer2_results.csv.selection_record.csv
+│   └── wordlists/
+│       ├── incorrect_words_claude.csv
+│       ├── incorrect_words_claude.md
+│       ├── incorrect_words_claude_deduped.md
+│       ├── phonetic_mismatch_rows.csv
+│       └── urdu_roman_mapping.csv
 ├── requirements.txt
 └── README.md
 ```
