@@ -2,6 +2,57 @@
 
 Production FastAPI service for the fine-tuned M2M100 LoRA Urdu → Roman Urdu transliteration model.
 
+DO THESE
+
+**Option 1: CTranslate2 (Best for Low GPU)**
+
+CTranslate2 is a fast inference engine for transformer models. It supports both CPU and CUDA and can significantly reduce memory usage and improve throughput for M2M100-style models. [Hugging Face](https://huggingface.co/entai2965/m2m100-1.2B-ctranslate2)
+
+bash
+
+```bash
+pip install ctranslate2
+ct2-opus-mt-converter --model Mavkif/m2m100_rup_rur_to_ur --output_dir m2m100_ct2 --quantization int8
+```
+
+Then serve with:
+
+python
+
+```python
+import ctranslate2
+translator = ctranslate2.Translator("m2m100_ct2", device="cuda", inter_threads=4)
+```
+
+**Concurrency trick:** `inter_threads=4` means 4 requests handled simultaneously on one GPU.
+
+**Option 2: Quantization (INT8/INT4)**
+
+* `bitsandbytes` 8-bit quantization via `load_in_8bit=True`
+* Cuts VRAM by ~50% with minimal quality loss on translation tasks
+
+**Option 3: Batching + Async API**
+
+* FastAPI + async endpoints
+* Dynamic batching: collect requests for 50ms, batch them, single forward pass
+* Use `asyncio` + a request queue
+
+**Option 4: ONNX Export**
+
+* Export to ONNX for CPU-optimized inference
+* Works well if GPU is unavailable
+
+**Recommended Production Stack (Low GPU):**
+
+```
+FastAPI → Request Queue → CTranslate2 (INT8) → Response
+           ↓
+    Dynamic Batching (50ms window)
+           ↓
+    Single GPU (even T4/V100 is fine with INT8)
+```
+
+
 ---
 
 ## Project structure
@@ -201,11 +252,11 @@ curl -X POST http://localhost:2000/romanize \
 
 **Error responses:**
 
-| Status | When |
-|--------|------|
-| 400 | Blank or invalid input |
-| 503 | Model still loading (shouldn't happen in normal operation) |
-| 500 | Unexpected inference failure (check logs) |
+| Status | When                                                       |
+| ------ | ---------------------------------------------------------- |
+| 400    | Blank or invalid input                                     |
+| 503    | Model still loading (shouldn't happen in normal operation) |
+| 500    | Unexpected inference failure (check logs)                  |
 
 ### GET /health
 
@@ -250,16 +301,16 @@ FastAPI ships with auto-generated docs:
 
 No config file needed. All variables have working defaults. Override on the command line as needed.
 
-| Variable | Default | Description |
-|---|---|---|
-| `HOST` | `0.0.0.0` | Bind address |
-| `PORT` | `2000` | Listen port |
-| `MODEL_DIR` | `./fine_tuned_model` | Path to LoRA adapter directory |
-| `NUM_BEAMS` | `4` | Beam search width |
-| `MAX_NEW_TOKENS` | `128` | Max Roman Urdu tokens per sentence |
-| `INFERENCE_BATCH_SIZE` | `8` | Max sentences per generate() call |
-| `WARMUP_SENTENCES` | `3` | Dummy calls on startup (1–3) |
-| `LOG_LEVEL` | `INFO` | `DEBUG` / `INFO` / `WARNING` / `ERROR` |
+| Variable                 | Default                | Description                                    |
+| ------------------------ | ---------------------- | ---------------------------------------------- |
+| `HOST`                 | `0.0.0.0`            | Bind address                                   |
+| `PORT`                 | `2000`               | Listen port                                    |
+| `MODEL_DIR`            | `./fine_tuned_model` | Path to LoRA adapter directory                 |
+| `NUM_BEAMS`            | `4`                  | Beam search width                              |
+| `MAX_NEW_TOKENS`       | `128`                | Max Roman Urdu tokens per sentence             |
+| `INFERENCE_BATCH_SIZE` | `8`                  | Max sentences per generate() call              |
+| `WARMUP_SENTENCES`     | `3`                  | Dummy calls on startup (1–3)                  |
+| `LOG_LEVEL`            | `INFO`               | `DEBUG` / `INFO` / `WARNING` / `ERROR` |
 
 ---
 
@@ -291,14 +342,14 @@ Mirrors the training constraint (bug #10 in train.py). DataParallel + fp16 + cus
 
 `eval_layer1.py` was run against all 2189 dataset rows on **CPU** (no GPU) as a baseline measurement of the fine-tuned model's raw inference speed, before any deployment optimizations:
 
-| Metric | Value |
-|---|---|
-| Total wall clock | 9142.81s (~2.5 hours) |
-| Avg latency / row | 4.177s |
-| Throughput | 0.239 rows/sec |
-| Batches | 137 |
-| Min / max batch latency | 8.72s / 402.78s |
-| Flagged rows | 121 (93 script leakage, 26 repeat loop, 13 length outlier) |
+| Metric                  | Value                                                      |
+| ----------------------- | ---------------------------------------------------------- |
+| Total wall clock        | 9142.81s (~2.5 hours)                                      |
+| Avg latency / row       | 4.177s                                                     |
+| Throughput              | 0.239 rows/sec                                             |
+| Batches                 | 137                                                        |
+| Min / max batch latency | 8.72s / 402.78s                                            |
+| Flagged rows            | 121 (93 script leakage, 26 repeat loop, 13 length outlier) |
 
 This is the number the GPU deployment (see "Why workers=1" above) is meant to improve on — there is no GPU-mode benchmark run yet, so a direct CPU-vs-GPU speedup figure isn't available. Treat CPU numbers as the pre-optimization floor.
 
@@ -312,14 +363,13 @@ For reference, `eval_layer2_openai.py` (a separate LLM-judge pass over the same 
 
 These scripts support the model evaluation workflow and are separate from the deployed API service.
 
-| Script | Purpose |
-|---|---|
-| `eval_layer1.py` | Runs the first evaluation pass over the model's transliteration outputs and writes `layer1_results.csv`. |
-| `inspect_layer1.py` | Inspects/debugs `layer1_results.csv` output. |
-| `eval_layer2_openai.py` | Runs a second evaluation pass using the OpenAI API as a judge to catch phonetic/semantic mismatches; writes `layer2_results.csv`. |
-| `estimate_cost.py` | Estimates OpenAI API token cost for `eval_layer2_openai.py` before running the full dataset. |
-| `filter_issue_type.py` | Filters `layer2_results.csv` (or similar) by a specific issue type for review. |
-| `remove_reps.py` | Deduplicates repeated entries in flagged word lists (e.g. `incorrect_words_claude.md`), preserving first-occurrence order. |
+| Script                    | Purpose                                                                                                                            |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `eval_layer1.py`        | Runs the first evaluation pass over the model's transliteration outputs and writes`layer1_results.csv`.                          |
+| `inspect_layer1.py`     | Inspects/debugs`layer1_results.csv` output.                                                                                      |
+| `eval_layer2_openai.py` | Runs a second evaluation pass using the OpenAI API as a judge to catch phonetic/semantic mismatches; writes`layer2_results.csv`. |
+| `estimate_cost.py`      | Estimates OpenAI API token cost for`eval_layer2_openai.py` before running the full dataset.                                      |
+| `filter_issue_type.py`  | Filters`layer2_results.csv` (or similar) by a specific issue type for review.                                                    |
+| `remove_reps.py`        | Deduplicates repeated entries in flagged word lists (e.g.`incorrect_words_claude.md`), preserving first-occurrence order.        |
 
 **Note:** Evaluation outputs (`layer1_results.csv`, `layer2_results.csv`, and their `.checkpoint` / `.metrics.json` / `.selection_record.csv` files) are treated as run artifacts, not source-controlled data — see `.gitignore`.
-
