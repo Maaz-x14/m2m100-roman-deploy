@@ -52,7 +52,6 @@ FastAPI → Request Queue → CTranslate2 (INT8) → Response
     Single GPU (even T4/V100 is fine with INT8)
 ```
 
-
 ---
 
 ## Project structure
@@ -370,6 +369,6 @@ These scripts support the model evaluation workflow and are separate from the de
 | `eval_layer2_openai.py` | Runs a second evaluation pass using the OpenAI API as a judge to catch phonetic/semantic mismatches; writes`layer2_results.csv`. |
 | `estimate_cost.py`      | Estimates OpenAI API token cost for`eval_layer2_openai.py` before running the full dataset.                                      |
 | `filter_issue_type.py`  | Filters`layer2_results.csv` (or similar) by a specific issue type for review.                                                    |
-| `remove_reps.py`        | Deduplicates repeated entries in flagged word lists (e.g.`incorrect_words_claude.md`), preserving first-occurrence order.        |
+| `remove_reps.py`        | Deduplicates repeated entries in flagged word lis`ts (e.g.`incorrect_words_claude.md`), preserving first-occurrence order.       |
 
 **Note:** Evaluation outputs (`layer1_results.csv`, `layer2_results.csv`, and their `.checkpoint` / `.metrics.json` / `.selection_record.csv` files) are treated as run artifacts, not source-controlled data — see `.gitignore`.
