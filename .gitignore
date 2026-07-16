@@ -7,3 +7,10 @@ data/raw/faiq-data.csv
 .env
 __pycache__/
 *.pyc
+
+
+/fine_tuned_model_run1
+/fine_tuned_model_run2
+/fine_tuned_model_run3
+/fine_tuned_model_run4
+
