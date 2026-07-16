@@ -4,6 +4,7 @@ data/layer2/layer2_results.csv*
 data/layer2/layer2_results.csv.metrics.json
 data/layer2/layer2_results.csv.selection_record.csv
 data/raw/faiq-data.csv
+data/wordlists/layer2_results.csv.selection_record.csv
 .env
 __pycache__/
 *.pyc
