@@ -9,7 +9,7 @@ data/wordlists/layer2_results.csv.selection_record.csv
 __pycache__/
 *.pyc
 
-
+/fine_tuned_model
 /fine_tuned_model_run1
 /fine_tuned_model_run2
 /fine_tuned_model_run3
