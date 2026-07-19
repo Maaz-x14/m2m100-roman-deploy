@@ -17,3 +17,4 @@ __pycache__/
 
 *.checkpoint
 /data
+/eval
