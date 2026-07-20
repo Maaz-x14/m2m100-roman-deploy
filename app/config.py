@@ -34,6 +34,9 @@ NUM_BEAMS: int            = int(os.environ.get("NUM_BEAMS", "4"))
 MAX_SRC_LEN: int          = int(os.environ.get("MAX_SRC_LEN", "256"))
 MAX_NEW_TOKENS: int       = int(os.environ.get("MAX_NEW_TOKENS", "256"))
 INFERENCE_BATCH_SIZE: int = int(os.environ.get("INFERENCE_BATCH_SIZE", "8"))
+MAX_BATCH_SIZE: int       = INFERENCE_BATCH_SIZE  # reuse existing config value
+MAX_WAIT_MS: int          = int(os.environ.get("MAX_WAIT_MS", "50"))
+
 
 # ── Startup warm-up ───────────────────────────────────────────────────────────
 WARMUP_SENTENCES: int = int(os.environ.get("WARMUP_SENTENCES", "3"))

@@ -25,6 +25,8 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel, field_validator
 
 from app import model as model_module
+from app import batcher as batcher_module
+
 
 logger = logging.getLogger(__name__)
 
@@ -70,7 +72,9 @@ class HealthResponse(BaseModel):
     description=(
         "Accepts a single Urdu string or a list of strings in Arabic script "
         "and returns Roman Urdu. Response shape mirrors the input: "
-        "string → string, list → list."
+        "string → string, list → list. Single-string requests are grouped "
+        "into dynamic batches with other concurrent requests for throughput; "
+        "list requests are processed as an explicit batch immediately."
     ),
 )
 async def romanize(request: RomanizeRequest) -> RomanizeResponse:
@@ -110,7 +114,16 @@ async def romanize(request: RomanizeRequest) -> RomanizeResponse:
     t0 = time.perf_counter()
 
     try:
-        results = model_module.transliterate(sentences)
+        if is_batch:
+            # Explicit client-supplied batch — run directly, unchanged from
+            # before. Bypasses the dynamic batcher (see note above).
+            results = model_module.transliterate(sentences)
+        else:
+            # Single request — route through the dynamic batcher so it can
+            # be grouped with other concurrent single requests.
+            batcher = batcher_module.get_batcher()
+            result = await batcher.submit(sentences[0])
+            results = [result]
     except ValueError as exc:
         logger.warning("/romanize bad input: %s", exc)
         return JSONResponse(status_code=400, content={"detail": str(exc)})
@@ -125,6 +138,7 @@ async def romanize(request: RomanizeRequest) -> RomanizeResponse:
     logger.info("/romanize  done  n=%d  (%.0f ms)", len(results), elapsed)
 
     return RomanizeResponse(romanized_text=results if is_batch else results[0])
+
 
 
 @router.get(

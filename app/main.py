@@ -29,6 +29,7 @@ from fastapi.exceptions import RequestValidationError
 from app import config
 from app import model as model_module
 from app.api import router
+from app import batcher as batcher_module
 
 # ── Logging ───────────────────────────────────────────────────────────────────
 
@@ -73,9 +74,10 @@ async def lifespan(app: FastAPI):
     try:
         model_module.load_model()
         model_module.warmup()
+        batcher_module.init_batcher()          # <-- ADD THIS LINE
     except Exception as exc:
         logger.critical("Startup failed: %s", exc, exc_info=True)
-        raise  # abort — uvicorn will exit with non-zero code
+        raise
 
     logger.info("Romanize API is READY. Accepting requests.")
     logger.info("  POST http://%s:%d/romanize", config.HOST, config.PORT)
@@ -83,6 +85,7 @@ async def lifespan(app: FastAPI):
 
     yield  # ← server runs here
 
+    await batcher_module.shutdown_batcher()    # <-- ADD THIS LINE
     logger.info("Romanize API shutting down.")
 
 # ── App factory ───────────────────────────────────────────────────────────────
