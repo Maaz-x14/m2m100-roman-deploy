@@ -161,3 +161,10 @@ async def health() -> HealthResponse:
         )
 
     return HealthResponse(status="ok", model_ready=True, device=device)
+
+@router.get("/ping")
+async def ping():
+    """Trivial endpoint, no model involvement — measures pure HTTP overhead."""
+    return {"pong": True}
+
+    
