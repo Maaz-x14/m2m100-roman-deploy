@@ -38,13 +38,17 @@ import random
 import sys
 from pathlib import Path
 
-DEFAULT_CSV_PATH = "faiq-data.csv"
+DEFAULT_CSV_PATH = "data/raw/faiq-data.csv"
 
 
 def load_queries(csv_path: str, min_words: int) -> list[dict]:
     """
     Reads faiq-data.csv, returns rows where user_message has >= min_words
     words (whitespace-split). Keeps message_id alongside for traceability.
+
+    Delimiter is auto-detected (csv.Sniffer) since this file uses ';'
+    rather than the ',' csv.DictReader assumes by default — using the
+    wrong delimiter silently reads the entire header as one column name.
     """
     kept = []
     total = 0
@@ -52,7 +56,18 @@ def load_queries(csv_path: str, min_words: int) -> list[dict]:
     empty = 0
 
     with open(csv_path, newline="", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
+        sample = f.read(4096)
+        f.seek(0)
+        try:
+            dialect = csv.Sniffer().sniff(sample, delimiters=";,\t")
+        except csv.Error:
+            print("Could not auto-detect delimiter, defaulting to ';' (matches faiq-data.csv)")
+            dialect = csv.excel
+            dialect.delimiter = ";"
+
+        print(f"Detected delimiter: '{dialect.delimiter}'")
+        reader = csv.DictReader(f, dialect=dialect)
+
         if "user_message" not in reader.fieldnames:
             print(f"ERROR: 'user_message' column not found. Columns present: {reader.fieldnames}")
             sys.exit(1)
