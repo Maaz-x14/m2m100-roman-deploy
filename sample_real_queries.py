@@ -38,7 +38,7 @@ import random
 import sys
 from pathlib import Path
 
-DEFAULT_CSV_PATH = "data/raw/faiq-data.csv"
+DEFAULT_CSV_PATH = "faiq-data.csv"
 
 
 def load_queries(csv_path: str, min_words: int) -> list[dict]:
