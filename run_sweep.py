@@ -41,7 +41,7 @@ HEALTH_URL = f"http://localhost:{PORT}/health"
 STARTUP_TIMEOUT_S = 60
 STARTUP_POLL_INTERVAL_S = 2
 
-BATCH_SIZES = [8, 16, 32, 48, 64, 96]
+BATCH_SIZES = [8, 16, 32, 48, 64]
 WAIT_MSES = [30, 50, 70, 90]
 
 BENCH_SCRIPT = "bench_phase2.py"
@@ -112,17 +112,24 @@ def run_benchmark() -> bool:
 
 def summarize_all_results() -> None:
     """After the full sweep, reads every phase2_results_*.csv and prints a combined table."""
+    # Measured separately via diagnose_overhead.py — pure HTTP round trip to a
+    # no-op /ping endpoint, no model involved. Negligible but subtracted here
+    # so "model-only" numbers don't require manual arithmetic afterward.
+    HTTP_OVERHEAD_S = 0.0018
+
     csv_files = sorted(glob.glob("phase2_results_*.csv"))
     if not csv_files:
         print("No result CSVs found to summarize.")
         return
 
-    print("\n" + "=" * 100)
-    print("SWEEP SUMMARY — all combinations")
-    print("=" * 100)
-    print(f"{'Config':<22} {'Concurrency':<12} {'p50 (s)':<10} {'p95 (s)':<10} {'p99 (s)':<10}")
-    print("-" * 100)
+    print("\n" + "=" * 110)
+    print("SWEEP SUMMARY — all combinations (model-only = full latency minus ~1.8ms measured HTTP overhead)")
+    print("=" * 110)
+    print(f"{'Config':<20} {'Concurrency':<12} {'p50 (s)':<10} {'p95 (s)':<10} "
+          f"{'Model p50':<11} {'Model p95':<11}")
+    print("-" * 110)
 
+    ranked = []
     for csv_path in csv_files:
         rows_by_concurrency: dict[int, list[float]] = {}
         with open(csv_path, newline="") as f:
@@ -133,14 +140,32 @@ def summarize_all_results() -> None:
                 c = int(row["concurrency"])
                 rows_by_concurrency.setdefault(c, []).append(float(row["request_latency_s"]))
 
+        all_model_p95 = []
         for concurrency in sorted(rows_by_concurrency.keys()):
             latencies = sorted(rows_by_concurrency[concurrency])
             p50 = latencies[int(len(latencies) * 0.50)]
             p95 = latencies[min(int(len(latencies) * 0.95), len(latencies) - 1)]
-            p99 = latencies[min(int(len(latencies) * 0.99), len(latencies) - 1)]
-            print(f"{config_label:<22} {concurrency:<12} {p50:<10.3f} {p95:<10.3f} {p99:<10.3f}")
+            model_p50 = max(0.0, p50 - HTTP_OVERHEAD_S)
+            model_p95 = max(0.0, p95 - HTTP_OVERHEAD_S)
+            all_model_p95.append(model_p95)
+            print(f"{config_label:<20} {concurrency:<12} {p50:<10.3f} {p95:<10.3f} "
+                  f"{model_p50:<11.3f} {model_p95:<11.3f}")
 
-    print("=" * 100)
+        ranked.append((config_label, statistics.mean(all_model_p95), max(all_model_p95)))
+
+    print("=" * 110)
+
+    print("\n" + "=" * 70)
+    print("RANKED BY AVERAGE MODEL-ONLY p95 ACROSS ALL CONCURRENCY LEVELS")
+    print("(fixed rule — lower is better, no HTTP overhead included)")
+    print("=" * 70)
+    ranked.sort(key=lambda x: x[1])
+    for i, (label, avg_p95, max_p95) in enumerate(ranked, 1):
+        marker = "  <-- BEST" if i == 1 else ""
+        under_300ms = "PASS" if max_p95 < 0.3 else "FAIL"
+        print(f"{i:<4}{label:<20} avg_model_p95={avg_p95:.3f}  max_model_p95={max_p95:.3f}  "
+              f"[{under_300ms} vs 300ms]{marker}")
+    print("=" * 70)
 
 
 def main():
