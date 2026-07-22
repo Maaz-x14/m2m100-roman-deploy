@@ -11,7 +11,7 @@ Environment variables (with defaults):
   MODEL_DIR            ./fine_tuned_model
   NUM_BEAMS            4
   MAX_NEW_TOKENS       128
-  INFERENCE_BATCH_SIZE 8       (max sentences per generate() call)
+  INFERENCE_BATCH_SIZE 64      (max sentences per generate() call)
   WARMUP_SENTENCES     3       (dummy calls on startup)
   LOG_LEVEL            INFO
 """
@@ -33,7 +33,7 @@ SRC_LANG: str          = "ur"
 NUM_BEAMS: int            = int(os.environ.get("NUM_BEAMS", "4"))
 MAX_SRC_LEN: int          = int(os.environ.get("MAX_SRC_LEN", "256"))
 MAX_NEW_TOKENS: int       = int(os.environ.get("MAX_NEW_TOKENS", "256"))
-INFERENCE_BATCH_SIZE: int = int(os.environ.get("INFERENCE_BATCH_SIZE", "8"))
+INFERENCE_BATCH_SIZE: int = int(os.environ.get("INFERENCE_BATCH_SIZE", "64"))
 MAX_BATCH_SIZE: int       = INFERENCE_BATCH_SIZE  # reuse existing config value
 MAX_WAIT_MS: int          = int(os.environ.get("MAX_WAIT_MS", "50"))
 
